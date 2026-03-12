@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+
+  gateway:
+    build: ../backend/gateway/ApiGateway
+
+  user-service:
+    build: ../backend/services/UserService
+
+  booking-service:
+    build: ../backend/services/BookingService
+
+  invoice-service:
+    build: ../backend/services/InvoiceService
+
+  ai-service:
+    build: ../backend/services/AIService
+
+  redis:
+    image: redis
+
+  rabbitmq:
+    image: rabbitmq:3-management
