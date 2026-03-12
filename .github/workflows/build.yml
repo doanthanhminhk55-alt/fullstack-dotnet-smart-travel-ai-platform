@@ -18,4 +18,4 @@ jobs:
      with:
        dotnet-version: 8.0
 
-   - run: dotnet build
+   - run: dotnet build backend/gateway/ApiGateway/ApiGateway.csproj
