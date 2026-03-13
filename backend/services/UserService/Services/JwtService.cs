@@ -7,10 +7,13 @@ namespace UserService.Services
 {
     public class JwtService
     {
+        private const string SECRET =
+        "THIS_IS_A_SUPER_SECRET_JWT_KEY_FOR_TRAVEL_AI_PLATFORM_2026";
+
         public string GenerateToken(string userId)
         {
             var key = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes("SUPER_SECRET_KEY")
+                Encoding.UTF8.GetBytes(SECRET)
             );
 
             var creds = new SigningCredentials(
@@ -19,11 +22,9 @@ namespace UserService.Services
             );
 
             var token = new JwtSecurityToken(
-                claims: new[]
-                {
-                    new Claim("userId", userId)
-                },
-                expires: DateTime.Now.AddHours(2),
+                issuer: "travel-ai",
+                audience: "travel-ai",
+                expires: DateTime.Now.AddHours(1),
                 signingCredentials: creds
             );
 

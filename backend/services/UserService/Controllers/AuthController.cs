@@ -5,13 +5,13 @@ namespace UserService.Controllers
 {
     [ApiController]
     [Route("auth")]
-    public class AuthController : ControllersBase
+    public class AuthController : ControllerBase
     {
-        private readonly JwtService jwt;
+        private readonly JwtService _jwt;
 
-        public AuthController()
+        public AuthController(JwtService jwt)
         {
-            _jwt = new JwtService();
+            _jwt = jwt;
         }
 
         [HttpPost("login")]
