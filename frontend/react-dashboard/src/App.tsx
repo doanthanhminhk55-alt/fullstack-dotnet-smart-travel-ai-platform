@@ -1,16 +1,33 @@
 import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import api from "./api/api";
 
 function App() {
-  useEffect(() => {
-    console.log("Smart Travel AI Dashboard started")
-  }, [])
+  const [token, setToken] = useState("");
+
+  const login = async () => {
+
+    const rest = await api.post("/user/auth/login");
+
+    setToken(rest.data.token);
+
+  };
 
   return (
-    <div>
-      <h1>Smart Travel AI Dashboard</h1>
+    <div style={{ padding: 40 }}>
+      <h2>Smart Travel AI Platform</h2>
+
+      <button onClick={login}>
+        Login
+      </button>
+
+      <p>Token:</p>
+
+      <textarea
+        value={token}
+        rows={6}
+        cols={60}
+        readOnly
+      />
     </div>
   )
 }

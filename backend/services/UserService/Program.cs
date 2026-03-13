@@ -9,8 +9,20 @@ builder.Services.AddSingleton<JwtService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var app = builder.Build();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("cors",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
+        });
+});
 
+
+var app = builder.Build();
+app.UseCors("cors");
 app.UseSwagger();
 app.UseSwaggerUI();
 
